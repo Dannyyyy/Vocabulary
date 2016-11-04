@@ -218,6 +218,7 @@
     <Content Include="Views\Home\ListLanguages.cshtml" />
     <Content Include="Views\Home\EditLanguage.cshtml" />
     <Content Include="Views\Home\CreateLanguage.cshtml" />
+    <Content Include="Views\Home\DeleteLanguage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

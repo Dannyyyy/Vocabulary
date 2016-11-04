@@ -89,5 +89,34 @@ namespace Vocabulary.Controllers
             dbContext.SaveChanges();
             return RedirectToAction("ListLanguages");
         }
+
+        [HttpGet]
+        [Route("DeleteLanguage/{id}")]
+        public ActionResult DeleteLanguage(string id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Language language = dbContext.Languages.Find(id);
+            if (language != null)
+            {
+                return View(language);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost, ActionName("DeleteLanguage")]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Language language = dbContext.Languages.Find(id);
+            if (language == null)
+            {
+                return HttpNotFound();
+            }
+            dbContext.Languages.Remove(language);
+            dbContext.SaveChanges();
+            return RedirectToAction("ListLanguages");
+        }
     }
 }

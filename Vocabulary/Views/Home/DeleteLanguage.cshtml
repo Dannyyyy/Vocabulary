@@ -1,0 +1,48 @@
+﻿@model Vocabulary.Models.Language
+
+@{
+    ViewBag.Title = "Удаление языка";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Вы действительно хотите удалить @Model.LanguageDescription язык?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Перейти на главную", "Index") | 
+            @Html.ActionLink("Перейти к списку языков", "ListLanguages")
+        </div>
+    }
+</div>
