@@ -21,9 +21,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Перевод", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Популярные слова", "About", "Home")</li>
                     <li>@Html.ActionLink("Список языков", "ListLanguages", "Home")</li>
+                    <li>@Html.ActionLink("Переводы", "Translations", "Home")</li>
+                    <li>@Html.ActionLink("Популярные слова", "About", "Home")</li>
+                    <li>@Html.ActionLink("Список слов", "ListTemplates", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -32,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year – Словарь иностранных слов</p>
         </footer>
     </div>
 

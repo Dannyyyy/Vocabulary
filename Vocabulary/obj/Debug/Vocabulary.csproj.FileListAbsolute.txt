@@ -132,3 +132,4 @@ C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migration
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.csproj.GenerateResource.Cache
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.dll
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.pdb
+C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewAttributesTemplate.resources

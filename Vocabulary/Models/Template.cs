@@ -10,10 +10,12 @@ namespace Vocabulary.Models
     {
         // ID книги
         [Key]
+        [Required]
         public string TemplateId { get; set; }
-        // название книги
+        [Required]
+        [Display(Name = "Слово")]
         public string TemplateMessage { get; set; }
-        // автор книги
+        [Display(Name = "Значение")]
         public string Description { get; set; }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Vocabulary.Models.Template>
+
+@{
+    ViewBag.Title = "Список слов";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Добавить новое слово", "CreateTemplate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TemplateMessage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TemplateMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить значение", "EditTemplate", new { id=item.TemplateId }) |
+            @Html.ActionLink("Удалить", "DeleteTemplate", new { id=item.TemplateId })
+        </td>
+    </tr>
+}
+
+</table>

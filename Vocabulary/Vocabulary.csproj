@@ -168,6 +168,10 @@
     <Compile Include="Migrations\201611040417070_RequiredAttributesLanguage.Designer.cs">
       <DependentUpon>201611040417070_RequiredAttributesLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611041453480_NewAttributesTemplate.cs" />
+    <Compile Include="Migrations\201611041453480_NewAttributesTemplate.Designer.cs">
+      <DependentUpon>201611041453480_NewAttributesTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Template.cs" />
@@ -219,6 +223,10 @@
     <Content Include="Views\Home\EditLanguage.cshtml" />
     <Content Include="Views\Home\CreateLanguage.cshtml" />
     <Content Include="Views\Home\DeleteLanguage.cshtml" />
+    <Content Include="Views\Home\ListTemplates.cshtml" />
+    <Content Include="Views\Home\CreateTemplate.cshtml" />
+    <Content Include="Views\Home\EditTemplate.cshtml" />
+    <Content Include="Views\Home\DeleteTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -237,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611040417070_RequiredAttributesLanguage.resx">
       <DependentUpon>201611040417070_RequiredAttributesLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611041453480_NewAttributesTemplate.resx">
+      <DependentUpon>201611041453480_NewAttributesTemplate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

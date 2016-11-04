@@ -107,7 +107,7 @@ namespace Vocabulary.Controllers
         }
 
         [HttpPost, ActionName("DeleteLanguage")]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteLanguageConfirmed(string id)
         {
             Language language = dbContext.Languages.Find(id);
             if (language == null)
@@ -117,6 +117,91 @@ namespace Vocabulary.Controllers
             dbContext.Languages.Remove(language);
             dbContext.SaveChanges();
             return RedirectToAction("ListLanguages");
+        }
+
+        public ActionResult ListTemplates()
+        {
+            var templates = dbContext.Template;
+            return View(templates.ToList());
+        }
+
+        [HttpGet]
+        [Route("CreateTemplate")]
+        public ActionResult CreateTemplate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("CreateLanguage")]
+        public ActionResult CreateTemplate(Template template)
+        {
+            var vocabularyLanguage = dbContext.Languages.Find(template.TemplateMessage);
+            if (vocabularyLanguage == null)
+            {
+                template.TemplateId = template.TemplateMessage;
+                dbContext.Template.Add(template);
+                dbContext.SaveChanges();
+                return RedirectToAction("ListTemplates");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
+        [Route("EditTemplate/{id}")]
+        public ActionResult EditTemplate(string id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Template template = dbContext.Template.Find(id);
+            if (template != null)
+            {
+                return View(template);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        [Route("EditTemplate")]
+        public ActionResult EditTemplate(Template template)
+        {
+            dbContext.Entry(template).State = EntityState.Modified;
+            dbContext.SaveChanges();
+            return RedirectToAction("ListTemplates");
+        }
+
+        [HttpGet]
+        [Route("DeleteTemplate/{id}")]
+        public ActionResult DeleteTemplate(string id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            Template template = dbContext.Template.Find(id);
+            if (template != null)
+            {
+                return View(template);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost, ActionName("DeleteTemplate")]
+        public ActionResult DeleteTemplateConfirmed(string id)
+        {
+            Template template = dbContext.Template.Find(id);
+            if (template == null)
+            {
+                return HttpNotFound();
+            }
+            dbContext.Template.Remove(template);
+            dbContext.SaveChanges();
+            return RedirectToAction("ListTemplates");
         }
     }
 }
