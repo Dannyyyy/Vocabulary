@@ -227,6 +227,8 @@
     <Content Include="Views\Home\CreateTemplate.cshtml" />
     <Content Include="Views\Home\EditTemplate.cshtml" />
     <Content Include="Views\Home\DeleteTemplate.cshtml" />
+    <Content Include="Views\Home\Translations.cshtml" />
+    <Content Include="Views\Home\Translation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

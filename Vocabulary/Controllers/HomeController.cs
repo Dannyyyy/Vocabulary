@@ -203,5 +203,47 @@ namespace Vocabulary.Controllers
             dbContext.SaveChanges();
             return RedirectToAction("ListTemplates");
         }
+
+        [Route("Translations")]
+        public ActionResult Translations()
+        {
+            var languages = dbContext.Languages;
+            return View(languages.ToList());
+        }
+
+        [HttpGet]
+        [Route("Translation/{id}")]
+        public ActionResult Translation(string id)
+        {
+            ViewBag.LanguageTitle = id;
+            var templatesId = dbContext.Template.Select(t => t.TemplateId).ToList();
+            var translationsId = dbContext.Translations.Where(t => t.LanguageId == id).Select(t => t.MessageId).ToList();
+            foreach (var template in templatesId)
+            {
+                if (!translationsId.Contains(template))
+                {
+                    Translation translation = new Translation();
+                    translation.LanguageId = id;
+                    translation.MessageId = template;
+                    translation.MessageTranslation = null;
+                    dbContext.Translations.Add(translation);
+                }
+            }
+            dbContext.SaveChanges();
+            var translations = dbContext.Translations.Where(t => t.LanguageId == id).Select(t => t);
+            return View(translations.ToList());
+        }
+
+        [HttpPost]
+        [Route("Translation")]
+        public ActionResult Translation(List<Translation> translations)
+        {
+            foreach (Translation translation in translations)
+            {
+                dbContext.Entry(translation).State = EntityState.Modified;  
+            }
+            dbContext.SaveChanges();
+            return RedirectToAction("Translations");
+        }
     }
 }
