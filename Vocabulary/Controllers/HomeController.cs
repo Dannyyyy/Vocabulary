@@ -289,7 +289,7 @@ namespace Vocabulary.Controllers
                 }
                 if (translations.Count == 0)
                 {
-                    return Json(new { emptySearch = "Переводы для слова не найдены в словаре.", result = false }, JsonRequestBehavior.AllowGet);
+                    return Json(new { searchResult = "noTranslations", result = false }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -298,7 +298,7 @@ namespace Vocabulary.Controllers
             }
             else
             {
-                return Json(new { emptySearch = "В поле перевода ничего не введено.", result = false }, JsonRequestBehavior.AllowGet);
+                return Json(new { searchResult = "noSearch", result = false }, JsonRequestBehavior.AllowGet);
             }
         }
 

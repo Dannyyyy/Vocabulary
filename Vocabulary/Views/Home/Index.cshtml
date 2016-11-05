@@ -24,7 +24,13 @@
                     else
                     {
                         $('#translate_word').hide();
-                        alert("Ошибка.");
+                        switch (data.searchResult)
+                        {
+                            case "noTranslations": alert("Переводы для слова не найдены в словаре.");
+                                break;
+                            case "noSearch": alert("В поле перевода ничего не введено.");
+                                break;
+                        }
                     }
                 }
     </script>
