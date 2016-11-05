@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Vocabulary.Models.Translation>
+
+@{
+    ViewBag.Title = "Перевод слова";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageTranslation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageId)
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (item.MessageTranslation != null)
+            {
+                <td class="alert-success">
+                    @Html.DisplayFor(modelItem => item.MessageTranslation)
+                </td>
+            }
+            else
+            {
+                <td class="alert-danger">
+                    Перевод не определен
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageId)
+            </td>
+        </tr>
+    }
+</table>

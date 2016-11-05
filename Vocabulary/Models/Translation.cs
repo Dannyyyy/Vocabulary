@@ -10,10 +10,12 @@ namespace Vocabulary.Models
     public class Translation
     {
         [Key, Column(Order = 1)]
+        [Display(Name = "Аббревиатура языка")]
         public string LanguageId { get; set; }
         [Key, Column(Order = 2)]
         public string MessageId { get; set; }
         // автор книги
+        [Display(Name = "Перевод")]
         public string MessageTranslation { get; set; }
     }
 }

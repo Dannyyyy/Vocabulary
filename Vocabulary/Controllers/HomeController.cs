@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -125,6 +126,11 @@ namespace Vocabulary.Controllers
                 return RedirectToAction("ListLanguages");
             }
             dbContext.Languages.Remove(language);
+            var deleteTranslations = dbContext.Translations.Where(t => t.LanguageId == id);
+            foreach (Translation translation in deleteTranslations)
+            {
+                dbContext.Translations.Remove(translation);
+            }
             dbContext.SaveChanges();
             Session["LanguageMessage"] = "Язык успешно удален.";
             return RedirectToAction("ListLanguages");
@@ -265,6 +271,53 @@ namespace Vocabulary.Controllers
             }
             dbContext.SaveChanges();
             return RedirectToAction("Translations");
+        }
+
+        public ActionResult TranslateWord(string search)
+        {
+            if (search != "")
+            {
+                var activeLanguages = dbContext.Languages.Where(t => t.Activity == true).Select(t => t.LanguageId).ToList();
+                var allTranslations = dbContext.Translations.Where(t => t.MessageId == search).Select(t => t);
+                var translations = new List<Translation>();
+                foreach (Translation translation in allTranslations)
+                {
+                    if (activeLanguages.Contains(translation.LanguageId))
+                    {
+                        translations.Add(translation);
+                    }
+                }
+                if (translations.Count == 0)
+                {
+                    return Json(new { emptySearch = "Переводы для слова не найдены в словаре.", result = false }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { translationWords = RenderViewToString("TranslateWords", translations.ToList()) , result = true }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(new { emptySearch = "В поле перевода ничего не введено.", result = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        protected string RenderViewToString(string viewName, object model)
+        {
+            ControllerContext context = this.ControllerContext;
+            if (string.IsNullOrEmpty(viewName))
+                viewName = context.RouteData.GetRequiredString("action");
+
+            var viewData = new ViewDataDictionary(model);
+
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(context, viewName);
+                var viewContext = new ViewContext(context, viewResult.View, viewData, new TempDataDictionary(), sw);
+                viewResult.View.Render(viewContext, sw);
+
+                return sw.GetStringBuilder().ToString();
+            }
         }
     }
 }
