@@ -176,6 +176,14 @@
     <Compile Include="Migrations\201611050943031_NewLocalNameLanguage.Designer.cs">
       <DependentUpon>201611050943031_NewLocalNameLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611051620137_NewLanguageLocalNameTranslationsLanguages.cs" />
+    <Compile Include="Migrations\201611051620137_NewLanguageLocalNameTranslationsLanguages.Designer.cs">
+      <DependentUpon>201611051620137_NewLanguageLocalNameTranslationsLanguages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611051649309_NewLanguageNativeNameTranslationsLanguages.cs" />
+    <Compile Include="Migrations\201611051649309_NewLanguageNativeNameTranslationsLanguages.Designer.cs">
+      <DependentUpon>201611051649309_NewLanguageNativeNameTranslationsLanguages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Template.cs" />
@@ -267,6 +275,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611050943031_NewLocalNameLanguage.resx">
       <DependentUpon>201611050943031_NewLocalNameLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611051620137_NewLanguageLocalNameTranslationsLanguages.resx">
+      <DependentUpon>201611051620137_NewLanguageLocalNameTranslationsLanguages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611051649309_NewLanguageNativeNameTranslationsLanguages.resx">
+      <DependentUpon>201611051649309_NewLanguageNativeNameTranslationsLanguages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

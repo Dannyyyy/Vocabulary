@@ -17,5 +17,7 @@ namespace Vocabulary.Models
         // автор книги
         [Display(Name = "Перевод")]
         public string MessageTranslation { get; set; }
+        [Display(Name = "Естественное имя языка")]
+        public string LanguageNativeName { get; set; }
     }
 }

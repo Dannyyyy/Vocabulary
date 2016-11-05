@@ -19,7 +19,7 @@ namespace Vocabulary.Models
         public string LanguageDescription { get; set; }
 
         [Display(Name = "Естественное имя языка")]
-        public string LocalName { get; set; }
+        public string LanguageNativeName { get; set; }
         // автор книги
         [Required]
         [Display(Name = "Активность")]

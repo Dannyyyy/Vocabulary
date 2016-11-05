@@ -50,7 +50,7 @@ namespace Vocabulary.Controllers
                 var vocabularyLanguage = dbContext.Languages.Find(langtag);
                 if (vocabularyLanguage == null)
                 {
-                    language.LocalName = lang.NativeName;
+                    language.LanguageNativeName = lang.NativeName;
                     dbContext.Languages.Add(language);
                     dbContext.SaveChanges();
                     Session["LanguageMessage"] = "Язык успешно добавлен в словарь.";
@@ -244,6 +244,7 @@ namespace Vocabulary.Controllers
                     translation.LanguageId = id;
                     translation.MessageId = template;
                     translation.MessageTranslation = null;
+                    translation.LanguageNativeName = dbContext.Languages.Find(id).LanguageNativeName;
                     dbContext.Translations.Add(translation);
                 }
             }

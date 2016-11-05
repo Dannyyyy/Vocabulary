@@ -10,6 +10,9 @@
             @Html.DisplayNameFor(model => model.MessageTranslation)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.LanguageNativeName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.LanguageId)
         </th>
         <th></th>
@@ -30,6 +33,9 @@
                     Перевод не определен
                 </td>
             }
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageNativeName)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LanguageId)
             </td>
