@@ -51,16 +51,19 @@ namespace Vocabulary.Controllers
                 {
                     dbContext.Languages.Add(language);
                     dbContext.SaveChanges();
+                    Session["LanguageMessage"] = "Язык успешно добавлен в словарь.";
                     return RedirectToAction("ListLanguages");
                 }
                 else
                 {
-                    return RedirectToAction("Index");
+                    Session["LanguageMessage"] = "Создаеваемый язык уже добавлен в словарь.";
+                    return RedirectToAction("ListLanguages");
                 }
             }
             catch
             {
-                return RedirectToAction("Index");
+                Session["LanguageMessage"] = "Языка, с создаваемой аббревиатурой, не существует.";
+                return RedirectToAction("ListLanguages");
             }
             
         }
@@ -71,14 +74,16 @@ namespace Vocabulary.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                Session["LanguageMessage"] = "Язык не найден.";
+                return RedirectToAction("ListLanguages");
             }
             Language language = dbContext.Languages.Find(id);
             if(language != null)
             {
                 return View(language);
             }
-            return HttpNotFound();
+            Session["LanguageMessage"] = "Произошла неизвестная ошибка.";
+            return RedirectToAction("ListLanguages");
         }
 
         [HttpPost]
@@ -87,6 +92,7 @@ namespace Vocabulary.Controllers
         {
             dbContext.Entry(language).State = EntityState.Modified;
             dbContext.SaveChanges();
+            Session["LanguageMessage"] = "Язык успешно изменен.";
             return RedirectToAction("ListLanguages");
         }
 
@@ -96,14 +102,16 @@ namespace Vocabulary.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                Session["LanguageMessage"] = "Язык не найден.";
+                return RedirectToAction("ListLanguages");
             }
             Language language = dbContext.Languages.Find(id);
             if (language != null)
             {
                 return View(language);
             }
-            return HttpNotFound();
+            Session["LanguageMessage"] = "Произошла неизвестная ошибка.";
+            return RedirectToAction("ListLanguages");
         }
 
         [HttpPost, ActionName("DeleteLanguage")]
@@ -112,10 +120,12 @@ namespace Vocabulary.Controllers
             Language language = dbContext.Languages.Find(id);
             if (language == null)
             {
-                return HttpNotFound();
+                Session["LanguageMessage"] = "Язык не найден.";
+                return RedirectToAction("ListLanguages");
             }
             dbContext.Languages.Remove(language);
             dbContext.SaveChanges();
+            Session["LanguageMessage"] = "Язык успешно удален.";
             return RedirectToAction("ListLanguages");
         }
 
@@ -133,7 +143,7 @@ namespace Vocabulary.Controllers
         }
 
         [HttpPost]
-        [Route("CreateLanguage")]
+        [Route("CreateTemplate")]
         public ActionResult CreateTemplate(Template template)
         {
             var vocabularyLanguage = dbContext.Languages.Find(template.TemplateMessage);

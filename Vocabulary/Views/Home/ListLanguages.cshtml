@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Добавить новый язык", "CreateLanguage")
 </p>
+<h4>@Session["LanguageMessage"]</h4>
 <table class="table">
     <tr>
         <th>
@@ -23,7 +24,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.LanguageId)
@@ -35,11 +37,12 @@
             @Html.DisplayFor(modelItem => item.Activity)
         </td>
         <td>
-            @Html.ActionLink("Изменить", "EditLanguage", new { id=item.LanguageId }) |
-            @Html.ActionLink("Удалить", "DeleteLanguage", new { id=item.LanguageId }) |
+            @Html.ActionLink("Изменить", "EditLanguage", new { id = item.LanguageId }) |
+            @Html.ActionLink("Удалить", "DeleteLanguage", new { id = item.LanguageId }) |
             @Html.ActionLink("Перейти к переводу", "Translation", new { id = item.LanguageId })
         </td>
     </tr>
 }
 
 </table>
+@{ Session["LanguageMessage"] = ""; }
