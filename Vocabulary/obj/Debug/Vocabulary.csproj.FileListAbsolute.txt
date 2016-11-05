@@ -133,3 +133,4 @@ C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.csproj.Ge
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.dll
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.pdb
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewAttributesTemplate.resources
+C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewLocalNameLanguage.resources

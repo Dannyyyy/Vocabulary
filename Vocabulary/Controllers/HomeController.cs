@@ -49,6 +49,7 @@ namespace Vocabulary.Controllers
                 var vocabularyLanguage = dbContext.Languages.Find(langtag);
                 if (vocabularyLanguage == null)
                 {
+                    language.LocalName = lang.NativeName;
                     dbContext.Languages.Add(language);
                     dbContext.SaveChanges();
                     Session["LanguageMessage"] = "Язык успешно добавлен в словарь.";
@@ -226,6 +227,7 @@ namespace Vocabulary.Controllers
         public ActionResult Translation(string id)
         {
             ViewBag.LanguageTitle = id;
+            //добавление новых слов из template в язык
             var templatesId = dbContext.Template.Select(t => t.TemplateId).ToList();
             var translationsId = dbContext.Translations.Where(t => t.LanguageId == id).Select(t => t.MessageId).ToList();
             foreach (var template in templatesId)
@@ -240,8 +242,17 @@ namespace Vocabulary.Controllers
                 }
             }
             dbContext.SaveChanges();
-            var translations = dbContext.Translations.Where(t => t.LanguageId == id).Select(t => t);
-            return View(translations.ToList());
+            foreach (var translation in translationsId)
+            {
+                if (!templatesId.Contains(translation))
+                {
+                    Translation deleteTranslation = dbContext.Translations.Find(id,translation);
+                    dbContext.Entry(deleteTranslation).State = EntityState.Deleted;
+                }
+           }
+           dbContext.SaveChanges();
+           var translations = dbContext.Translations.Where(t => t.LanguageId == id).Select(t => t);
+           return View(translations.ToList());
         }
 
         [HttpPost]

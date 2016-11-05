@@ -15,8 +15,11 @@ namespace Vocabulary.Models
         public string LanguageId { get; set; }
         // название книги
         [Required]
-        [Display(Name = "Описание")]
+        [Display(Name = "Локализованное имя языка")]
         public string LanguageDescription { get; set; }
+
+        [Display(Name = "Естественное имя языка")]
+        public string LocalName { get; set; }
         // автор книги
         [Required]
         [Display(Name = "Активность")]

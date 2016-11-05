@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201611041453480_NewAttributesTemplate.Designer.cs">
       <DependentUpon>201611041453480_NewAttributesTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611050943031_NewLocalNameLanguage.cs" />
+    <Compile Include="Migrations\201611050943031_NewLocalNameLanguage.Designer.cs">
+      <DependentUpon>201611050943031_NewLocalNameLanguage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Template.cs" />
@@ -250,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611041453480_NewAttributesTemplate.resx">
       <DependentUpon>201611041453480_NewAttributesTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611050943031_NewLocalNameLanguage.resx">
+      <DependentUpon>201611050943031_NewLocalNameLanguage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
