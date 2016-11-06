@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vocabulary.Models.PopularWord>
+﻿@* @model IEnumerable<Vocabulary.Models.PopularWord> *@
 
 @{
     ViewBag.Title = "Популярные слова";
@@ -11,53 +11,13 @@
 
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Top</h3>
-<div id="popular_words">
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.WordId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Count)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @using (Ajax.BeginForm("TranslateWord", new AjaxOptions { OnSuccess = "OnSuccess" }))
-            {
-                <input type="hidden" class="form-control" id="search" name="search" value=@item.WordId>
-                <button class="btn btn-danger" type="submit">@item.WordId</button>
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Count)
-        </td>
-        @*
-            <td>
-
-                @Html.ActionLink("Edit", "Edit", new { id=item.WordId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.WordId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.WordId })
-            </td>
-        *@
-        </tr>
-}
-    </table>
-    </div>
+<div class="panel panel-primary" style="width:100%;display:inline-block" id="popular_words">
+</div>
 <script type="text/javascript">
                 function OnSuccess(data)
                 {
                     if (data.result) {
+                        $('#popular_words').html(data.popularWords);
                         $('#translate_word').show();
                         $('#translate_word').html(data.translationWords);
                     }
@@ -79,6 +39,11 @@
 <script>
         $(document).ready(function ()
         {
+            $.ajax({
+                type: 'get',
+                url: '/Home/GetTemplates'
+            }).done(function (data) { $('#popular_words').html(data); });
+
             $('#translate_word').hide();
         });
 </script>

@@ -261,6 +261,7 @@
     <Content Include="Views\Home\Translation.cshtml" />
     <Content Include="Views\Home\TranslateWords.cshtml" />
     <Content Include="Views\Home\PopularWords.cshtml" />
+    <Content Include="Views\Home\Templates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -316,8 +316,8 @@ namespace Vocabulary.Controllers
                 }
                 else
                 {
-
-                    return Json(new { translationWords = RenderViewToString("TranslateWords", translations.ToList()) , result = true }, JsonRequestBehavior.AllowGet);
+                    var popularWords = dbContext.PopularWords.OrderByDescending(t => t.Count).Take(5);
+                    return Json(new { translationWords = RenderViewToString("TranslateWords", translations.ToList()), popularWords = RenderViewToString("Templates", popularWords.ToList()), result = true }, JsonRequestBehavior.AllowGet);
                 }
             }
             else
@@ -327,6 +327,11 @@ namespace Vocabulary.Controllers
         }
 
         public ActionResult PopularWords()
+        {
+            return View();
+        }
+
+        public ActionResult GetTemplates()
         {
             //добавление новых слов из template в язык
             var templatesId = dbContext.Template.Select(t => t.TemplateId).ToList();
@@ -354,7 +359,7 @@ namespace Vocabulary.Controllers
             dbContext.SaveChanges();
             //
             var popularWords = dbContext.PopularWords.OrderByDescending(t => t.Count).Take(5);
-            return View(popularWords.ToList());
+            return PartialView("Templates", popularWords.ToList());
         }
 
         protected string RenderViewToString(string viewName, object model)
