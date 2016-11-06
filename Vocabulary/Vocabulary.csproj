@@ -160,6 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\VocabularyLogic.cs" />
     <Compile Include="Migrations\201611031736100_InitialCreate.cs" />
     <Compile Include="Migrations\201611031736100_InitialCreate.Designer.cs">
       <DependentUpon>201611031736100_InitialCreate.cs</DependentUpon>
