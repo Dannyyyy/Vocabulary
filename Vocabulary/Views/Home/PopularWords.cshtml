@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Vocabulary.Models.PopularWord>
+
+@{
+    ViewBag.Title = "Популярные слова";
+    ViewBag.Top = "ТОП-5";
+}
+
+<script src="~/Scripts/jquery-3.1.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Top</h3>
+<div id="popular_words">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WordId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Count)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @using (Ajax.BeginForm("TranslateWord", new AjaxOptions { OnSuccess = "OnSuccess" }))
+            {
+                <input type="hidden" class="form-control" id="search" name="search" value=@item.WordId>
+                <button class="btn btn-danger" type="submit">@item.WordId</button>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Count)
+        </td>
+        @*
+            <td>
+
+                @Html.ActionLink("Edit", "Edit", new { id=item.WordId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.WordId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.WordId })
+            </td>
+        *@
+        </tr>
+}
+    </table>
+    </div>
+<script type="text/javascript">
+                function OnSuccess(data)
+                {
+                    if (data.result) {
+                        $('#translate_word').show();
+                        $('#translate_word').html(data.translationWords);
+                    }
+                    else
+                    {
+                        $('#translate_word').hide();
+                        switch (data.searchResult)
+                        {
+                            case "noTranslations": alert("Переводы для слова не найдены в словаре.");
+                                break;
+                            case "noSearch": alert("В поле перевода ничего не введено.");
+                                break;
+                        }
+                    }
+                }
+</script>
+<div class="panel panel-primary" style="width:100%;display:inline-block" id="translate_word">
+</div>
+<script>
+        $(document).ready(function ()
+        {
+            $('#translate_word').hide();
+        });
+</script>
+
+

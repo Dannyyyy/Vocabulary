@@ -136,3 +136,5 @@ C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migration
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewLocalNameLanguage.resources
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewLanguageLocalNameTranslationsLanguages.resources
 C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewLanguageNativeNameTranslationsLanguages.resources
+C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.NewModelPopularWord.resources
+C:\Users\Danil\Source\Repos\Vocabulary\Vocabulary\obj\Debug\Vocabulary.Migrations.ChangeModelPopularWord.resources

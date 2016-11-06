@@ -11,5 +11,6 @@ namespace Vocabulary.Models
         public DbSet<Template> Template { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Translation> Translations { get; set; }
+        public System.Data.Entity.DbSet<Vocabulary.Models.PopularWord> PopularWords { get; set; }
     }
 }

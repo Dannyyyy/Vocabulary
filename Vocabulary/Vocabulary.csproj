@@ -184,8 +184,17 @@
     <Compile Include="Migrations\201611051649309_NewLanguageNativeNameTranslationsLanguages.Designer.cs">
       <DependentUpon>201611051649309_NewLanguageNativeNameTranslationsLanguages.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611060423221_NewModelPopularWord.cs" />
+    <Compile Include="Migrations\201611060423221_NewModelPopularWord.Designer.cs">
+      <DependentUpon>201611060423221_NewModelPopularWord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611060441260_ChangeModelPopularWord.cs" />
+    <Compile Include="Migrations\201611060441260_ChangeModelPopularWord.Designer.cs">
+      <DependentUpon>201611060441260_ChangeModelPopularWord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\PopularWord.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\Translation.cs" />
     <Compile Include="Models\VocabularyContext.cs" />
@@ -251,6 +260,7 @@
     <Content Include="Views\Home\Translations.cshtml" />
     <Content Include="Views\Home\Translation.cshtml" />
     <Content Include="Views\Home\TranslateWords.cshtml" />
+    <Content Include="Views\Home\PopularWords.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,6 +291,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611051649309_NewLanguageNativeNameTranslationsLanguages.resx">
       <DependentUpon>201611051649309_NewLanguageNativeNameTranslationsLanguages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611060423221_NewModelPopularWord.resx">
+      <DependentUpon>201611060423221_NewModelPopularWord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611060441260_ChangeModelPopularWord.resx">
+      <DependentUpon>201611060441260_ChangeModelPopularWord.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

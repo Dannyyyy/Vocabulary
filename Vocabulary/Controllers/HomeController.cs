@@ -226,6 +226,12 @@ namespace Vocabulary.Controllers
             }
             dbContext.Template.Remove(template);
             dbContext.SaveChanges();
+            var deleteTranslations = dbContext.Translations.Where(t => t.MessageId == id);
+            foreach (Translation translation in deleteTranslations)
+            {
+                dbContext.Translations.Remove(translation);
+            }
+            dbContext.SaveChanges();
             Session["TemplateMessage"] = "Слово успешно удалено.";
             return RedirectToAction("ListTemplates");
         }
@@ -290,6 +296,13 @@ namespace Vocabulary.Controllers
                 var activeLanguages = dbContext.Languages.Where(t => t.Activity == true).Select(t => t.LanguageId).ToList();
                 var allTranslations = dbContext.Translations.Where(t => t.MessageId == search).Select(t => t);
                 var translations = new List<Translation>();
+                var popularWord = dbContext.PopularWords.Find(search);
+                if(popularWord != null)
+                {
+                    popularWord.Count++;
+                    dbContext.Entry(popularWord).State = EntityState.Modified;
+                    dbContext.SaveChanges();
+                }
                 foreach (Translation translation in allTranslations)
                 {
                     if (activeLanguages.Contains(translation.LanguageId))
@@ -303,6 +316,7 @@ namespace Vocabulary.Controllers
                 }
                 else
                 {
+
                     return Json(new { translationWords = RenderViewToString("TranslateWords", translations.ToList()) , result = true }, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -310,6 +324,37 @@ namespace Vocabulary.Controllers
             {
                 return Json(new { searchResult = "noSearch", result = false }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult PopularWords()
+        {
+            //добавление новых слов из template в язык
+            var templatesId = dbContext.Template.Select(t => t.TemplateId).ToList();
+            var popularTranslationsId = dbContext.PopularWords.Select(t => t.WordId).ToList();
+            foreach (var template in templatesId)
+            {
+                if (!popularTranslationsId.Contains(template))
+                {
+                    PopularWord popularWord = new PopularWord();
+                    popularWord.WordId = template;
+                    popularWord.Description = dbContext.Template.Find(template).Description;
+                    popularWord.Count = 0;
+                    dbContext.PopularWords.Add(popularWord);
+                }
+            }
+            dbContext.SaveChanges();
+            foreach (var translation in popularTranslationsId)
+            {
+                if (!templatesId.Contains(translation))
+                {
+                    PopularWord deletePopularWord = dbContext.PopularWords.Find(translation);
+                    dbContext.Entry(deletePopularWord).State = EntityState.Deleted;
+                }
+            }
+            dbContext.SaveChanges();
+            //
+            var popularWords = dbContext.PopularWords.OrderByDescending(t => t.Count).Take(5);
+            return View(popularWords.ToList());
         }
 
         protected string RenderViewToString(string viewName, object model)
