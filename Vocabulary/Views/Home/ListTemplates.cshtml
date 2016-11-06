@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Добавить новое слово", "CreateTemplate")
 </p>
+<h4>@Session["TemplateMessage"]</h4>
 <table class="table">
     <tr>
         <th>
@@ -20,7 +21,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TemplateMessage)
@@ -29,10 +31,10 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Изменить значение", "EditTemplate", new { id=item.TemplateId }) |
-            @Html.ActionLink("Удалить", "DeleteTemplate", new { id=item.TemplateId })
+            @Html.ActionLink("Изменить значение", "EditTemplate", new { id = item.TemplateId }) |
+            @Html.ActionLink("Удалить", "DeleteTemplate", new { id = item.TemplateId })
         </td>
     </tr>
 }
-
 </table>
+@{ Session["TemplateMessage"] = ""; }

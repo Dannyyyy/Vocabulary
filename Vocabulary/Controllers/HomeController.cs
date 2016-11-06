@@ -159,11 +159,13 @@ namespace Vocabulary.Controllers
                 template.TemplateId = template.TemplateMessage;
                 dbContext.Template.Add(template);
                 dbContext.SaveChanges();
+                Session["TemplateMessage"] = "Слово успешно добавлено.";
                 return RedirectToAction("ListTemplates");
             }
             else
             {
-                return RedirectToAction("Index");
+                Session["TemplateMessage"] = "Слово уже добавлено в словарь.";
+                return RedirectToAction("ListTemplates");
             }
         }
 
@@ -173,14 +175,16 @@ namespace Vocabulary.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                Session["TemplateMessage"] = "Слово не найдено.";
+                return RedirectToAction("ListTemplates");
             }
             Template template = dbContext.Template.Find(id);
             if (template != null)
             {
                 return View(template);
             }
-            return HttpNotFound();
+            Session["TemplateMessage"] = "Произошла неизвестная ошибка.";
+            return RedirectToAction("ListTemplates");
         }
 
         [HttpPost]
@@ -189,6 +193,7 @@ namespace Vocabulary.Controllers
         {
             dbContext.Entry(template).State = EntityState.Modified;
             dbContext.SaveChanges();
+            Session["TemplateMessage"] = "Слово успешно изменено.";
             return RedirectToAction("ListTemplates");
         }
 
@@ -198,14 +203,16 @@ namespace Vocabulary.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                Session["TemplateMessage"] = "Слово не найдено.";
+                return RedirectToAction("ListTemplates");
             }
             Template template = dbContext.Template.Find(id);
             if (template != null)
             {
                 return View(template);
             }
-            return HttpNotFound();
+            Session["TemplateMessage"] = "Произошла неизвестная ошибка.";
+            return RedirectToAction("ListTemplates");
         }
 
         [HttpPost, ActionName("DeleteTemplate")]
@@ -214,10 +221,12 @@ namespace Vocabulary.Controllers
             Template template = dbContext.Template.Find(id);
             if (template == null)
             {
-                return HttpNotFound();
+                Session["TemplateMessage"] = "Слово не найдено.";
+                return RedirectToAction("ListTemplates");
             }
             dbContext.Template.Remove(template);
             dbContext.SaveChanges();
+            Session["TemplateMessage"] = "Слово успешно удалено.";
             return RedirectToAction("ListTemplates");
         }
 
