@@ -21,7 +21,7 @@
                 @using (Ajax.BeginForm("TranslateWord", new AjaxOptions { OnSuccess = "OnSuccess" }))
                 {
                     <input type="hidden" class="form-control" id="search" name="search" value=@item.WordId>
-                    <button class="btn btn-danger" type="submit">@item.WordId</button>
+                    <button class="btn btn-success" type="submit">@item.WordId</button>
                 }
             </td>
             <td>
