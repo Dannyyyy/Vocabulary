@@ -152,8 +152,8 @@ namespace Vocabulary.Controllers
         [Route("CreateTemplate")]
         public ActionResult CreateTemplate(Template template)
         {
-            var vocabularyLanguage = dbContext.Languages.Find(template.TemplateMessage);
-            if (vocabularyLanguage == null)
+            var vocabularyTempalte = dbContext.Template.Find(template.TemplateMessage);
+            if (vocabularyTempalte == null)
             {
                 template.TemplateId = template.TemplateMessage;
                 dbContext.Template.Add(template);
