@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Добавить новый язык", "CreateLanguage")
+    @Html.ActionLink("Новый язык", "CreateLanguage", null, new { @class = "glyphicon glyphicon-globe text-warning" })
 </p>
 <h4 class="text-danger">@Session["LanguageMessage"]</h4>
 <table class="table">
@@ -43,9 +43,9 @@
             @Html.DisplayFor(modelItem => item.Activity)
         </td>
         <td>
-            @Html.ActionLink("Изменить", "EditLanguage", new { id = item.LanguageId }) |
-            @Html.ActionLink("Удалить", "DeleteLanguage", new { id = item.LanguageId }) |
-            @Html.ActionLink("Перейти к переводу", "Translation", new { id = item.LanguageId })
+            @Html.ActionLink("Изменить", "EditLanguage", new { id = item.LanguageId }, new { @class = "glyphicon glyphicon-edit" }) |
+            @Html.ActionLink("Удалить", "DeleteLanguage", new { id = item.LanguageId }, new { @class = "glyphicon glyphicon-remove text-danger" }) |
+            @Html.ActionLink("Перевод", "Translation", new { id = item.LanguageId }, new { @class = "glyphicon glyphicon-list-alt text-success" })
         </td>
     </tr>
 }

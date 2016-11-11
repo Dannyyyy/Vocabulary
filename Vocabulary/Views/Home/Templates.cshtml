@@ -30,37 +30,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Count)
             </td>
-            @*
-                <td>
-
-                    @Html.ActionLink("Edit", "Edit", new { id=item.WordId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.WordId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.WordId })
-                </td>
-            *@
         </tr>
     }
 </table>
-@*
-<script type="text/javascript">
-                function OnSuccess(data)
-                {
-                    if (data.result) {
-                        $('#popular_words').html(data.popularWords);
-                        $('#translate_word').show();
-                        $('#translate_word').html(data.translationWords);
-                    }
-                    else
-                    {
-                        $('#translate_word').hide();
-                        switch (data.searchResult)
-                        {
-                            case "noTranslations": alert("Переводы для слова не найдены в словаре.");
-                                break;
-                            case "noSearch": alert("В поле перевода ничего не введено.");
-                                break;
-                        }
-                    }
-                }
-</script>
-    *@
