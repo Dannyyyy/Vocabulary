@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Activity)
         </td>
         <td>
-            @Html.ActionLink("Перейти к переводу", "Translation", new { id=item.LanguageId })
+            @Html.ActionLink("Перевод", "Translation", new { id=item.LanguageId }, new { @class = "glyphicon glyphicon-list-alt text-success" })
         </td>
     </tr>
 }

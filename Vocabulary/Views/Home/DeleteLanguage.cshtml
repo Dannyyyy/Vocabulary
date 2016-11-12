@@ -48,9 +48,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-danger" /> |
-            @Html.ActionLink("Перейти на главную", "Index") | 
-            @Html.ActionLink("Перейти к списку языков", "ListLanguages")
+            @Html.ActionLink("На главную", "Index", null, new { @class = "glyphicon glyphicon-home text-success" }) | 
+            <input type="submit" value="Удалить" class="btn btn-danger" /> | 
+            @Html.ActionLink("Список языков", "ListLanguages", null, new { @class = "glyphicon glyphicon-list" })
         </div>
     }
 </div>

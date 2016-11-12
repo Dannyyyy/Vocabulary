@@ -31,9 +31,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-danger" /> |
-            @Html.ActionLink("Перейти на главную", "Index")
+        <div class="form-actions col-lg-offset-1 no-color">
+                @Html.ActionLink("На главную", "Index", null, new { @class = "glyphicon glyphicon-home text-success" }) |
+                <input type="submit" value="Удалить" class="btn btn-danger" /> |
+                @Html.ActionLink("Список слов", "ListTemplates", null, new { @class = "glyphicon glyphicon-list" })
         </div>
     }
 </div>
