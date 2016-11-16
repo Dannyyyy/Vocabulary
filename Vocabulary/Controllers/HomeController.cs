@@ -61,14 +61,14 @@ namespace Vocabulary.Controllers
                 }
                 else
                 {
-                    Session["LanguageMessage"] = "Создаеваемый язык уже добавлен в словарь.";
-                    return RedirectToAction("ListLanguages");
+                    ModelState.AddModelError("", "Создаеваемый язык уже добавлен в словарь.");
+                    return View(language);
                 }
             }
             catch
             {
-                Session["LanguageMessage"] = "Языка, с создаваемой аббревиатурой, не существует.";
-                return RedirectToAction("ListLanguages");
+                ModelState.AddModelError("", "Языка, с создаваемой аббревиатурой, не существует.");
+                return View(language);
             }
             
         }
