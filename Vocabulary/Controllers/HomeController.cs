@@ -163,8 +163,10 @@ namespace Vocabulary.Controllers
             }
             else
             {
-                Session["TemplateMessage"] = "Слово уже добавлено в словарь.";
-                return RedirectToAction("ListTemplates");
+                //Session["TemplateMessage"] = "Слово уже добавлено в словарь.";
+                //return RedirectToAction("ListTemplates");
+                ModelState.AddModelError("", "Слово уже добавлено в словарь.");
+                return View(template);
             }
         }
 
